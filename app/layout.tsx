@@ -15,6 +15,23 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "For Mamiringui 💗",
   description: "Papiringui made something special for you...",
+  openGraph: {
+    title: "For Mamiringui 💗",
+    description: "Papiringui made something special for you...",
+    images: [
+      {
+        url: "/preview.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "For Mamiringui 💗",
+    description: "Papiringui made something special for you...",
+    images: ["/preview.png"],
+  },
 };
 
 export default function RootLayout({

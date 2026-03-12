@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -76,77 +74,18 @@ function ConfettiBurst() {
 }
 
 export default function CuteDateInviteWebsite() {
-  const [loading, setLoading] = React.useState(true);
-  const [progress, setProgress] = React.useState(0);
   const [step, setStep] = React.useState(0);
   const [noClicks, setNoClicks] = React.useState(0);
   const [accepted, setAccepted] = React.useState(false);
-  const [noPosition, setNoPosition] = React.useState({ x: 0, y: 0 });
-
-  React.useEffect(() => {
-    const duration = 3200;
-    const intervalTime = 45;
-    const increment = 100 / (duration / intervalTime);
-
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        const next = prev + increment;
-        if (next >= 100) {
-          clearInterval(interval);
-          setTimeout(() => setLoading(false), 150);
-          return 100;
-        }
-        return next;
-      });
-    }, intervalTime);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const nextStep = () => setStep((s) => s + 1);
 
   const handleNo = () => {
     setNoClicks((n) => Math.min(n + 1, 6));
-
-    setNoPosition({
-      x: Math.random() * 180 - 90,
-      y: Math.random() * 120 - 60,
-    });
   };
 
   const yesScale = 1 + noClicks * 0.08;
   const noScale = Math.max(1 - noClicks * 0.12, 0.45);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-white via-rose-50 to-pink-100 flex items-center justify-center px-6">
-        <div className="w-full max-w-md text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="rounded-[2rem] border border-rose-100 bg-white/90 backdrop-blur-sm shadow-[0_10px_40px_rgba(244,114,182,0.12)] px-8 py-10"
-          >
-            <div className="text-5xl mb-4">💗</div>
-            <p className="text-2xl font-semibold text-rose-500">for Mamiringui only...</p>
-            <p className="text-sm text-rose-300 mt-2">opening something cute</p>
-
-            <div className="mt-6 w-full h-3 bg-rose-100 rounded-full overflow-hidden">
-              <motion.div
-                className="h-full rounded-full bg-gradient-to-r from-rose-300 via-pink-400 to-rose-500"
-                initial={{ width: 0 }}
-                animate={{ width: `${progress}%` }}
-                transition={{ ease: "easeOut", duration: 0.2 }}
-              />
-            </div>
-
-            <p className="mt-3 text-sm font-medium text-rose-400">
-              {Math.min(100, Math.round(progress))}%
-            </p>
-          </motion.div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-rose-50 to-pink-100 flex items-center justify-center px-6 py-10 relative overflow-hidden">
@@ -211,27 +150,22 @@ export default function CuteDateInviteWebsite() {
                     would you like to go on a date with me?
                   </h1>
 
-                  <div className="relative flex items-center justify-center gap-4 pt-2 flex-wrap min-h-[110px]">
-                    <motion.button
+                  <div className="flex items-center justify-center gap-4 pt-2 flex-wrap">
+                    <button
                       onClick={() => setAccepted(true)}
                       className="border border-rose-200 bg-rose-400 text-white px-7 py-3 rounded-full shadow-sm transition-all duration-200 hover:bg-rose-500"
-                      style={{ scale: yesScale }}
+                      style={{ transform: `scale(${yesScale})` }}
                     >
                       yes
-                    </motion.button>
+                    </button>
 
-                    <motion.button
+                    <button
                       onClick={handleNo}
-                      animate={{
-                        x: noPosition.x,
-                        y: noPosition.y,
-                        scale: noScale,
-                      }}
-                      transition={{ type: "spring", stiffness: 260, damping: 14 }}
                       className="border border-gray-200 bg-white text-gray-700 px-7 py-3 rounded-full transition-all duration-200"
+                      style={{ transform: `scale(${noScale})` }}
                     >
                       no
-                    </motion.button>
+                    </button>
                   </div>
                 </motion.div>
               )}
@@ -246,10 +180,19 @@ export default function CuteDateInviteWebsite() {
               <ConfettiBurst />
               <div className="text-5xl">🌷💗✨</div>
               <h1 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-tight">
-                i want you to go out with me friday 7pm
+                i want you to go out with me friday 5pm
                 <br />
                 you and me and some sushi yuju
               </h1>
+              <div className="mt-6 flex justify-center">
+                <div className="rounded-[1.5rem] border border-rose-200 bg-white/80 p-3 shadow-sm">
+                  <img
+                    src="/bears.jpg"
+                    alt="cute bears"
+                    className="w-44 md:w-56 rounded-[1.2rem] object-cover"
+                  />
+                </div>
+              </div>
 
               <div className="mt-4 flex justify-start">
                 <div className="text-left text-rose-500">
