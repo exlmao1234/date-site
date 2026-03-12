@@ -181,7 +181,7 @@ export default function CuteDateInviteWebsite() {
               <ConfettiBurst />
               <div className="text-5xl">🌷💗✨</div>
               <h1 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-tight">
-                i want you to go out with me friday 5pm
+                i want you to go out with me friday 7pm
                 <br />
                 you and me and some sushi yuju
               </h1>
